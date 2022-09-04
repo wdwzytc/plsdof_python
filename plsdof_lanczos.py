@@ -169,4 +169,4 @@ def plsdof(X, y, m=X.shape[1],
 
 
 if __name__ == '__main__':
-    plsdof(X, y)
+    print(plsdof(X, y))
