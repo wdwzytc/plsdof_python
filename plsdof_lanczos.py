@@ -18,11 +18,10 @@ def read_X_y():
 X, y = read_X_y()
 
 
-def plsdof(X, y, m=X.shape[1],
+def plsdof(X, y,
            compute_jacobian=True,
-           DoF_max=min(X.shape[1] + 1, X.shape[0] - 1),
-           n_comp=3,
-           scatter_y_yfit=False):
+           scatter_y_yfit=True,
+           n_comp_for_scatter=3):
     def dA(w, A, dw):
         wa = sqrt(np.sum(w * matmul(A, w)))
         dummy = matmul((1 / wa) \
@@ -57,6 +56,10 @@ def plsdof(X, y, m=X.shape[1],
 
     p = X.shape[1]
     n = X.shape[0]
+
+    DoF_max = min(X.shape[1] + 1, X.shape[0] - 1)
+
+    m = X.shape[1]
     m = min(m, DoF_max)
     Beta = np.zeros((p, m))
     V = Beta.copy()
@@ -160,6 +163,7 @@ def plsdof(X, y, m=X.shape[1],
     DoF[DoF > DoF_max] = DoF_max
 
     if scatter_y_yfit:
+        n_comp = n_comp_for_scatter
         X, y = read_X_y()
         y_fit = matmul(X, coefficients[:, n_comp][:, np.newaxis]) + intercept[n_comp]
         fig, ax = plt.subplots()
