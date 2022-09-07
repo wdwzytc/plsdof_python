@@ -1,4 +1,4 @@
-Calculate the degrees of freedom for PLS with the "Lanczos" method, with details in section 3.3, Krämer (2011) [10.1198/jasa.2011.tm10107]
+Calculate the degrees of freedom for PLSR (partial least square regression) with the "Lanczos" method, with details in section 3.3, Krämer (2011) [10.1198/jasa.2011.tm10107]
 
 This code is just a translation from R code to Python code. Original R code is here: https://github.com/cran/plsdof 
 
